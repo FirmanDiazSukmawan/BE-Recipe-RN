@@ -49,9 +49,9 @@ const recipeController = {
   },
 
   findById: async (req, res) => {
-    const recipe_id = req.params.recipe_id;
+    const recipes_id = req.params.recipes_id;
     try {
-      let result = await findRecipesId(recipe_id);
+      let result = await findRecipesId(recipes_id);
       res.status(200).json({ data: result.rows });
       // console.log(result);
     } catch (err) {
@@ -92,6 +92,7 @@ const recipeController = {
         name_recipes: req.body.name_recipes,
         image: recipesImage.secure_url,
         video: req.body.video,
+        name_video: req.body.name_video,
         ingredients: req.body.ingredients,
         users_id: req.body.users_id,
       };
@@ -111,7 +112,7 @@ const recipeController = {
 
   putRecipes: async (req, res) => {
     try {
-      let recipe_id = req.params.recipe_id;
+      let recipes_id = req.params.recipes_id;
       let recipesImage = await cloudinary.uploader.upload(
         req.file && req.file?.path,
         {
@@ -122,7 +123,7 @@ const recipeController = {
       if (!recipesImage) {
         return res.json({ messsage: "need upload image" });
       }
-      let recipe = await findRecipesId(Number(recipe_id));
+      let recipe = await findRecipesId(Number(recipes_id));
       let data = recipe.rows[0];
       // console.log(data);
       let recipeData = {
@@ -132,7 +133,7 @@ const recipeController = {
         ingredients: req.body.ingredients || data.ingredients,
       };
       // console.log(recipeData);
-      await updateRecipes(recipeData, Number(recipe_id));
+      await updateRecipes(recipeData, Number(recipes_id));
       res.status(200).json({
         message: "recipe updated successfully",
       });
@@ -146,8 +147,8 @@ const recipeController = {
 
   deletRecipes: async (req, res) => {
     try {
-      let recipe_id = req.params.recipe_id;
-      const result = await deleteRecipes(recipe_id);
+      let recipes_id = req.params.recipes_id;
+      const result = await deleteRecipes(recipes_id);
       const data = await cloudinary.uploader.destroy(result);
 
       res.status(200).json({

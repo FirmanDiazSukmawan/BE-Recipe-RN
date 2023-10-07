@@ -1,3 +1,4 @@
+-- Active: 1696510194872@@localhost@5432@recipe_rn
 
 CREATE TABLE users (
   users_id SERIAL PRIMARY KEY,
@@ -16,9 +17,21 @@ CREATE TABLE food_recipes (
   image VARCHAR (255),
   ingredients TEXT NOT NULL,
   video VARCHAR NULL,
+  name_video VARCHAR(255),
   user_id INT NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(user_id)
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE liked (
+  liked_id SERIAL PRIMARY KEY,
+  users_id SERIAL,
+  recipes_id SERIAL
+);
+
+CREATE TABLE saved (
+  saved_id SERIAL PRIMARY KEY,
+  users_id SERIAL,
+  recipes_id SERIAL
 );
 
 
