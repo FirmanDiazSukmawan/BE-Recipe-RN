@@ -30,11 +30,11 @@ const savedController = {
 
   getSavedById: async (req, res) => {
     const saved_id = req.params.saved_id;
-    console.log(saved_id);
+    // console.log(saved_id);
     try {
       let result = await getSavedId(saved_id);
       res.status(200).json({ data: result.rows });
-      console.log(result);
+      // console.log(result);
     } catch (err) {
       res.status(400).json({
         error: err.message,

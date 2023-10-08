@@ -77,21 +77,32 @@ const recipeController = {
   },
 
   postRecipes: async (req, res) => {
+    // console.log(req.files.video);
     try {
       let recipesImage = await cloudinary.uploader.upload(
-        req.file && req.file?.path,
+        req.files.image && req.files?.image?.[0].path,
         {
-          folder: "recipe",
+          folder: "recipe_image",
+          resource_type: "image",
         }
       );
+      // console.log(recipesImage);
+      let recipesVideo = await cloudinary.uploader.upload(
+        req.files.video && req.files?.video?.[0].path,
+        {
+          resource_type: "video",
+          folder: "recipe_video",
+        }
+      );
+      console.log(recipesVideo);
 
-      if (!recipesImage) {
-        return res.json({ messsage: "need upload image" });
+      if (!recipesImage || !recipesVideo) {
+        return res.json({ messsage: "need upload image or video" });
       }
       let recipe = {
         name_recipes: req.body.name_recipes,
         image: recipesImage.secure_url,
-        video: req.body.video,
+        video: recipesVideo.secure_url,
         name_video: req.body.name_video,
         ingredients: req.body.ingredients,
         users_id: req.body.users_id,
@@ -103,6 +114,7 @@ const recipeController = {
         data: recipeData.rows,
       });
     } catch (err) {
+      console.error("Error creating recipes:", err);
       res.status(400).json({
         err: err.message,
         message: "error create recipes",
@@ -148,8 +160,10 @@ const recipeController = {
   deletRecipes: async (req, res) => {
     try {
       let recipes_id = req.params.recipes_id;
+      console.log(recipes_id);
       const result = await deleteRecipes(recipes_id);
       const data = await cloudinary.uploader.destroy(result);
+      // console.log(data);
 
       res.status(200).json({
         message: "recipe deleted successfully",

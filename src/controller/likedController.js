@@ -61,7 +61,7 @@ const likedController = {
       let { users_id, recipes_id } = req.body;
       //   console.log(liked);
       let likedData = await createLiked(users_id, recipes_id);
-      console.log(likedData);
+      // console.log(likedData);
       res.status(200).json(likedData);
     } catch (err) {
       res.status(400).json({

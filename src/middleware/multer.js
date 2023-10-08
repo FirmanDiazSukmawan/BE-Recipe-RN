@@ -21,7 +21,7 @@ const multerUpload = multer({
     const maxSize = 2 * 1024 * 1024;
     if (fileSize > maxSize) {
       const error = {
-        message: "File size exceeds maximum",
+        message: "File size exceeds maximum image",
       };
       return cb(error, false);
     }
