@@ -18,7 +18,7 @@ CREATE TABLE food_recipes (
   ingredients TEXT NOT NULL,
   video VARCHAR NULL,
   name_video VARCHAR(255),
-  user_id INT NOT NULL,
+  users_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -34,8 +34,18 @@ CREATE TABLE saved (
   recipes_id SERIAL
 );
 
+CREATE TABLE comment (
+  comment_id SERIAL PRIMARY KEY,
+  commen TEXT,
+  users_id SERIAL,
+  recipes_id SERIAL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 DROP TABLE food_recipes;
+
+DROP TABLE comment
 
 DROP TABLE users;
 DROP TABLE category

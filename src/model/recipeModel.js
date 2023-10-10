@@ -73,9 +73,9 @@ const createRecipes = (data) => {
 };
 
 const updateRecipes = (data, recipes_id) => {
-  const { name_recipes, image, video, ingredients } = data;
+  const { name_recipes, image, ingredients, video, name_video } = data;
   return db.query(
-    `UPDATE food_recipes SET name_recipes = '${name_recipes}', image = '${image}', video = '${video}',ingredients= '${ingredients}' WHERE food_recipes.recipes_id=${recipes_id}`
+    `UPDATE food_recipes SET name_recipes = '${name_recipes}', image = '${image}',ingredients= '${ingredients}',video ='${video}', name_video = '${name_video}'WHERE food_recipes.recipes_id=${recipes_id}`
   );
 };
 

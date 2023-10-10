@@ -126,14 +126,22 @@ const recipeController = {
     try {
       let recipes_id = req.params.recipes_id;
       let recipesImage = await cloudinary.uploader.upload(
-        req.file && req.file?.path,
+        req.files.image && req.files?.image?.[0].path,
         {
-          folder: "recipe",
+          folder: "recipe_image",
+          resource_type: "image",
+        }
+      );
+      let recipesVideo = await cloudinary.uploader.upload(
+        req.files.video && req.files?.video?.[0].path,
+        {
+          resource_type: "video",
+          folder: "recipe_video",
         }
       );
 
-      if (!recipesImage) {
-        return res.json({ messsage: "need upload image" });
+      if (!recipesImage || !recipesVideo) {
+        return res.json({ messsage: "need upload image or video" });
       }
       let recipe = await findRecipesId(Number(recipes_id));
       let data = recipe.rows[0];
@@ -141,7 +149,8 @@ const recipeController = {
       let recipeData = {
         name_recipes: req.body.name_recipes || data.name_recipes,
         image: recipesImage.secure_url || data.image,
-        video: req.body.video || data.video,
+        video: recipesVideo.secure_url || data.video,
+        name_video: req.body.name_video || data.name_video,
         ingredients: req.body.ingredients || data.ingredients,
       };
       // console.log(recipeData);
