@@ -1,22 +1,22 @@
 const multer = require("multer");
-const path = require("path");
+// const path = require("path");
 
 const multerUpload = multer({
   storage: multer.diskStorage({
-    destination: (req, file, cb) => {
-      if (file.fieldname === "video") {
-        cb(null, "./public/video");
-      } else if (file.fieldname === "image") {
-        cb(null, "./public/image");
-      } else {
-        cb("Invalid fieldname", null);
-      }
-    },
-    filename: (req, file, cb) => {
-      const ext = path.extname(file.originalname);
-      const fileName = `${Date.now()}${ext}`;
-      cb(null, fileName);
-    },
+    // destination: (req, file, cb) => {
+    //   if (file.fieldname === "video") {
+    //     cb(null, "./public/video");
+    //   } else if (file.fieldname === "image") {
+    //     cb(null, "./public/image");
+    //   } else {
+    //     cb("Invalid fieldname", null);
+    //   }
+    // },
+    // filename: (req, file, cb) => {
+    //   const ext = path.extname(file.originalname);
+    //   const fileName = `${Date.now()}${ext}`;
+    //   cb(null, fileName);
+    // },
   }),
   fileFilter: (req, file, cb) => {
     // const ext = path.extname(file.originalname);
