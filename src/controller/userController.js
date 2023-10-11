@@ -133,7 +133,7 @@ const userController = {
 
   createUser: async (req, res) => {
     try {
-      const { email, username, password, confirmPassword, phone_number, role } =
+      const { email, username, password, confirmPassword, phone_number } =
         req.body;
 
       let { rowCount } = await findUserEmail(email);
@@ -159,7 +159,6 @@ const userController = {
           username,
           password: hash,
           phone_number,
-          role,
         };
         // console.log(user);
 

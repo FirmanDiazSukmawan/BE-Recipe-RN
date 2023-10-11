@@ -16,7 +16,7 @@ const recipeController = {
       search: search || "",
       sortBy: sortBy || "name_recipes",
       sort: sort || "ASC",
-      limit: limit || 10,
+      limit: limit || 15,
       offset: offset || 0,
     };
     try {
@@ -94,7 +94,7 @@ const recipeController = {
           folder: "recipe_video",
         }
       );
-      console.log(recipesVideo);
+      // console.log(recipesVideo);
 
       if (!recipesImage || !recipesVideo) {
         return res.json({ messsage: "need upload image or video" });
