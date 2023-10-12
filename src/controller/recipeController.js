@@ -16,7 +16,7 @@ const recipeController = {
       search: search || "",
       sortBy: sortBy || "name_recipes",
       sort: sort || "ASC",
-      limit: limit || 15,
+      limit: limit || 25,
       offset: offset || 0,
     };
     try {
