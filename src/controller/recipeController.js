@@ -79,26 +79,32 @@ const recipeController = {
   postRecipes: async (req, res) => {
     // console.log(req.files.video);
     try {
-      let recipesImage = await cloudinary.uploader.upload(
-        req.files.image && req.files?.image?.[0].path,
-        {
-          folder: "recipe_image",
-          resource_type: "image",
-        }
-      );
-      // console.log(recipesImage);
-      let recipesVideo = await cloudinary.uploader.upload(
-        req.files.video && req.files?.video?.[0].path,
-        {
-          resource_type: "video",
-          folder: "recipe_video",
-        }
-      );
-      // console.log(recipesVideo);
-
-      if (!recipesImage || !recipesVideo) {
-        return res.json({ messsage: "need upload image or video" });
+      let recipesImage;
+      if (req.files.image && req.files.image[0]) {
+        recipesImage = await cloudinary.uploader.upload(
+          req.files.image[0].path,
+          {
+            folder: "recipe_image",
+            resource_type: "image",
+          }
+        );
+      } else {
+        return res.status(400).json({ message: "U need upload image" });
       }
+
+      let recipesVideo;
+      if (req.files.video && req.files.video[0]) {
+        recipesVideo = await cloudinary.uploader.upload(
+          req.files.video[0].path,
+          {
+            folder: "recipe_video",
+            resource_type: "video",
+          }
+        );
+      } else {
+        return res.status(400).json({ message: "U need upload video" });
+      }
+
       let recipe = {
         name_recipes: req.body.name_recipes,
         image: recipesImage.secure_url,
@@ -107,6 +113,15 @@ const recipeController = {
         ingredients: req.body.ingredients,
         users_id: req.body.users_id,
       };
+      if (
+        !recipe.name_recipes ||
+        !recipe.image ||
+        !recipe.video ||
+        !recipe.name_video ||
+        !recipe.ingredients
+      ) {
+        return res.status(400).json({ message: "U need fill all fields" });
+      }
       let recipeData = await createRecipes(recipe);
       // console.log(recipe);
       res.status(200).json({
