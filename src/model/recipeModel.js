@@ -7,7 +7,7 @@ const recipesQuery = (data) => {
   users.username AS creator, 
   users.image AS imageProfile, 
   TO_CHAR(food_recipes.created_at, 'DD-MM-YYYY') AS created_at
-FROM 
+FROM  
   food_recipes
 LEFT JOIN 
   users
