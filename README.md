@@ -49,7 +49,7 @@ These are the libraries and service used for building this backend API
 git clone https://github.com/xTats/BE-Recipe-RN.git
 ```
 
-2. Change directory to Be_Blanja
+2. Change directory to BE-RECIPE-RN
 
 ```sh
 cd BE-RECIPE-RN
