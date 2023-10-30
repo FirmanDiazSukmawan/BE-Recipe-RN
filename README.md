@@ -37,6 +37,7 @@ These are the libraries and service used for building this backend API
 - [Node.js](https://nodejs.org)
 - [Express](https://expressjs.com)
 - [PostgreSQL](https://www.postgresql.org)
+- [Cloudinary](https://cloudinary.com)
 - [Json Web Token](https://jwt.io)
 - [Multer](https://github.com/expressjs/multer)
 
