@@ -7,7 +7,7 @@
   </div>
   <h3 align="center">My Recipe</h3>
   <p align="center">
-    <a href="https://github.com/xTats/BE-Recipe-RN"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/FirmanDiazSukmawan/BE-Recipe-RN"><strong>Explore the docs »</strong></a>
     <br />
   <a href="https://fe-recipe-redux-mix-react.vercel.app">View Demo</a>
     ·
@@ -92,11 +92,11 @@ API endpoint list are also available as published postman documentation
 
 ## Related Project
 
-:rocket: [`Backend-Recipe-RN`](https://github.com/xTats/BE-Recipe-RN)
+:rocket: [`Backend-Recipe-RN`](https://github.com/FirmanDiazSukmawan/BE-Recipe-RN)
 
-:rocket: [`FE-Recipe-RN`](https://github.com/xTats/FE-Recipe-RN)
+:rocket: [`FE-Recipe-RN`](https://github.com/FirmanDiazSukmawan/FE-Recipe-RN)
 
-:rocket: [`FE-RECIPE-Redux-mix-react WEB`](https://github.com/xTats/FE-RECIPE-Redux-mix-react)
+:rocket: [`FE-RECIPE-Redux-mix-react WEB`](https://github.com/FirmanDiazSukmawan/FE-RECIPE-Redux-mix-react)
 
 :rocket: [`Demo MyRecipe Web`](https://fe-recipe-redux-mix-react.vercel.app)
 
